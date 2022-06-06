@@ -1,0 +1,27 @@
+.infoBox {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+.itemsBox {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
+  padding: 2rem;
+  border-radius: 30px;
+  background-color: var(--btnColor);
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color4);
+}
+.itemDetail {
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+}
