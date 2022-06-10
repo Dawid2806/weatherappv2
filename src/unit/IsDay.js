@@ -1,6 +1,9 @@
 import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
-export const useIsDay = () => {
+import updateLocale from "dayjs/plugin/updateLocale";
+import "dayjs/locale/pl";
+
+export const IsDay = () => {
   dayjs.extend(isoWeek);
 
   let tomorrowDay;

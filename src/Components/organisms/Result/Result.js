@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./Result.module.css";
 
-import { useCurrentDay } from "../../Hooks/useCurrentDay";
-import { useForecast } from "../../Hooks/useForecast";
+import { useCurrentDay } from "../../../Hooks/useCurrentDay";
+import { useForecast } from "../../../Hooks/useForecast";
 export const Result = (props) => {
-  const { currentDayDataHelper, currentWeatericonLink } = useCurrentDay();
-  const { forecastDaysHelper } = useForecast();
+  const { currentDayData, currentWeatericonLink } = useCurrentDay();
+  const { forecastDays } = useForecast();
   return (
     <main className={classes.main}>
-      <h1 className={classes.city}>{currentDayDataHelper.city}</h1>
+      <h1 className={classes.city}>{currentDayData.city}</h1>
       <div className={classes.mainContainer}>
         <img
           src={currentWeatericonLink}
@@ -16,50 +16,47 @@ export const Result = (props) => {
           className={classes.currentIcon}
         />
         <span className={classes.temperature}>
-          <span className={classes.grades}>{currentDayDataHelper.temp}℃</span>
+          <span className={classes.grades}>{currentDayData.temp}℃</span>
         </span>
-        <span className={classes.weather}>
-          {currentDayDataHelper.description}
-        </span>
+        <span className={classes.weather}>{currentDayData.description}</span>
       </div>
       <div className={classes.threeDaysContainer}>
         <ul className={classes.threeDays}>
           <li className={classes.threeDaysItem}>
             <img
               className={classes.forecastICon}
-              src={forecastDaysHelper.tomorrow.iconLink}
+              src={forecastDays.tomorrow.iconLink}
               alt=""
             />{" "}
-            {props.tomorrowDay}.{forecastDaysHelper.tomorrow.description}{" "}
+            {props.tomorrowDay}.{forecastDays.tomorrow.description}{" "}
             <span className={classes.threeDaysItemTemp}>
-              {forecastDaysHelper.tomorrow.highTemp}°/
-              {forecastDaysHelper.tomorrow.minTemp}°
+              {forecastDays.tomorrow.highTemp}°/
+              {forecastDays.tomorrow.minTemp}°
             </span>
           </li>
           <li className={classes.threeDaysItem}>
             <img
               className={classes.forecastICon}
-              src={forecastDaysHelper.afterTomorrow.iconLink}
+              src={forecastDays.afterTomorrow.iconLink}
               alt=""
             />{" "}
-            {props.afterTomorrowDay}.
-            {forecastDaysHelper.afterTomorrow.description}{" "}
+            {props.afterTomorrowDay}.{forecastDays.afterTomorrow.description}{" "}
             <span className={classes.threeDaysItemTemp}>
-              {forecastDaysHelper.afterTomorrow.highTemp}°/
-              {forecastDaysHelper.afterTomorrow.minTemp}°
+              {forecastDays.afterTomorrow.highTemp}°/
+              {forecastDays.afterTomorrow.minTemp}°
             </span>
           </li>
           <li className={classes.threeDaysItem}>
             <img
               className={classes.forecastICon}
-              src={forecastDaysHelper.nextAfterTomorrow.iconLink}
+              src={forecastDays.nextAfterTomorrow.iconLink}
               alt=""
             />{" "}
             {props.nextAfterTomorrowDay}.
-            {forecastDaysHelper.nextAfterTomorrow.description}{" "}
+            {forecastDays.nextAfterTomorrow.description}{" "}
             <span className={classes.threeDaysItemTemp}>
-              {forecastDaysHelper.nextAfterTomorrow.highTemp}°/
-              {forecastDaysHelper.nextAfterTomorrow.minTemp}°
+              {forecastDays.nextAfterTomorrow.highTemp}°/
+              {forecastDays.nextAfterTomorrow.minTemp}°
             </span>
           </li>
         </ul>

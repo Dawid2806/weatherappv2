@@ -5,14 +5,14 @@ export const useForecast = () => {
   const state = useSelector((state) => state);
   const forecastDaysWeahterData = state?.weatherSliceForecastReducer;
 
-  const giveDataFromForecastApi = (city) => {
+  const FetchForecastDaysFromData = (city) => {
     dispatch(
       weatherFetchForecast(
         `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=6acd30bef3ad4794b8105c7672b63001&include=minutely&lang=pl`
       )
     );
   };
-  const forecastDaysHelper = {
+  const forecastDays = {
     today: {
       pop: forecastDaysWeahterData.weather?.data[0]?.pop,
     },
@@ -43,5 +43,5 @@ export const useForecast = () => {
     },
   };
 
-  return { giveDataFromForecastApi, forecastDaysHelper };
+  return { FetchForecastDaysFromData, forecastDays };
 };

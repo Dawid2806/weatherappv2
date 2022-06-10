@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { weatherFetchCurrentDay } from "../store/weather-slice";
 import { useForecast } from "./useForecast";
 export const useCurrentDay = () => {
-  const { forecastDaysHelper } = useForecast();
+  const { forecastDays } = useForecast();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const currentDayWeahterData =
@@ -14,7 +14,7 @@ export const useCurrentDay = () => {
       )
     );
   };
-  const currentDayDataHelper = {
+  const currentDayData = {
     city: currentDayWeahterData?.city_name,
     temp: currentDayWeahterData?.temp.toFixed(),
     description: currentDayWeahterData?.weather.description,
@@ -23,15 +23,15 @@ export const useCurrentDay = () => {
     windSpd: Math.floor(currentDayWeahterData?.wind_spd * 3.6),
     humidity: currentDayWeahterData?.rh.toFixed(),
     feelsLike: currentDayWeahterData?.app_temp,
-    chanceOfRain: forecastDaysHelper?.today.pop,
+    chanceOfRain: forecastDays?.today.pop,
     icon: currentDayWeahterData?.weather.icon,
   };
-  const currentWeatericonLink = `https://www.weatherbit.io/static/img/icons/${currentDayDataHelper.icon}.png`;
+  const currentWeatericonLink = `https://www.weatherbit.io/static/img/icons/${currentDayData.icon}.png`;
 
   return {
     dispatch,
     fetchCurrentDayDataFromApi,
-    currentDayDataHelper,
+    currentDayData,
     currentWeatericonLink,
   };
 };

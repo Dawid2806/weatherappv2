@@ -1,53 +1,59 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Info } from "./Components/Result/Info";
-import { Result } from "./Components/Result/Result";
-import { Search } from "./Components/SearchForACity/Search";
-import { Loading } from "./Components/Result/Loading";
+import { Info } from "./Components/organisms/Info/Info";
+import { Result } from "./Components/organisms/Result/Result";
+import { Search } from "./Components/molecules/Search/Search";
+import { Loading } from "./Components/atoms/Loading/Loading";
 import { useCurrentDay } from "./Hooks/useCurrentDay";
-import { useIsDay } from "./Hooks/useIsDay";
-import { Error } from "./Components/Result/Error";
+import { Error } from "./Components/atoms/Error/Error";
+import { IsDay } from "../src/unit/IsDay";
+import { useSearch } from "./Hooks/useSearch";
 import "./App.css";
 function App() {
-  const [ready, setReady] = useState(false);
-  const { currentDayDataHelper } = useCurrentDay();
-  const { tomorrowDay, afterTomorrowDay, nextAfterTomorrowDay } = useIsDay();
+  const { showResult } = useSearch();
+  const { currentDayData } = useCurrentDay();
+  const { tomorrowDay, afterTomorrowDay, nextAfterTomorrowDay } = IsDay();
   const state = useSelector(
     (state) => state.weatherSliceCurrentDay && state.weatherSliceForecastReducer
   );
 
   const { loading, error } = state;
 
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+  if (error) {
+    <div>
+      <Error
+        error={
+          "wystąpił błąd !! Sprawdz ustawienia Sieci  lub odśwież ponownie"
+        }
+      />
+    </div>;
+  }
   return (
     <div className="App">
-      <Search ready={setReady} />
-
-      {loading ? (
-        <Loading />
-      ) : error ? (
-        <Error
-          error={
-            "wystąpił błąd !! Sprawdz ustawienia Sieci  lub odśwież ponownie"
-          }
-        />
-      ) : (
-        ready && (
-          <>
-            <Result
-              tomorrowDay={tomorrowDay}
-              afterTomorrowDay={afterTomorrowDay}
-              nextAfterTomorrowDay={nextAfterTomorrowDay}
-            />
-            <Info
-              feelsLike={currentDayDataHelper.feelsLike}
-              humidity={currentDayDataHelper.humidity}
-              windSpd={currentDayDataHelper.windSpd}
-              pres={currentDayDataHelper.pres}
-              chanceOfRain={currentDayDataHelper.chanceOfRain}
-              uv={currentDayDataHelper.uv}
-            />
-          </>
-        )
+      <Search />
+      {showResult && (
+        <>
+          <Result
+            tomorrowDay={tomorrowDay}
+            afterTomorrowDay={afterTomorrowDay}
+            nextAfterTomorrowDay={nextAfterTomorrowDay}
+          />
+          <Info
+            feelsLike={currentDayData.feelsLike}
+            humidity={currentDayData.humidity}
+            windSpd={currentDayData.windSpd}
+            pres={currentDayData.pres}
+            chanceOfRain={currentDayData.chanceOfRain}
+            uv={currentDayData.uv}
+          />
+        </>
       )}
     </div>
   );
