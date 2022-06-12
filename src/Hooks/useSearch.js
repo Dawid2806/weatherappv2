@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useCurrentDay } from "./useCurrentDay";
 import { useForecast } from "./useForecast";
-
+import { toggleShowResult } from "../store/searchSlice";
 export const useSearch = () => {
+  const dispatch = useDispatch();
   const [city, setCity] = useState("");
   const [error, setError] = useState(false);
-  const [showResult, setShowResult] = useState(false);
 
   const { FetchForecastDaysFromData } = useForecast();
   const { fetchCurrentDayDataFromApi } = useCurrentDay();
@@ -23,9 +24,8 @@ export const useSearch = () => {
       FetchForecastDaysFromData(city);
       setCity("");
       setError(true);
+      dispatch(toggleShowResult());
     }
-    setShowResult(false);
-    console.log(showResult);
   };
   const searchWithGeolocation = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ export const useSearch = () => {
           })
           .then(() => {});
         setError(true);
-        setShowResult(false);
+        dispatch(toggleShowResult());
       });
     }
   };
@@ -57,6 +57,5 @@ export const useSearch = () => {
     error,
     setError,
     handleChange,
-    showResult,
   };
 };

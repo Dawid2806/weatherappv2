@@ -10,7 +10,7 @@ import { IsDay } from "../src/unit/IsDay";
 import { useSearch } from "./Hooks/useSearch";
 import "./App.css";
 function App() {
-  const { showResult } = useSearch();
+  const showResult = useSelector((state) => state.searchSlice.showResult);
   const { currentDayData } = useCurrentDay();
   const { tomorrowDay, afterTomorrowDay, nextAfterTomorrowDay } = IsDay();
   const state = useSelector(

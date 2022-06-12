@@ -10,18 +10,18 @@
   grid-column-gap: 3rem;
   grid-row-gap: 3rem;
   padding: 2rem;
-  border-radius: 30px;
-  background-color: var(--btnColor);
+  border-radius: 1.8rem;
+  background-color: var(--grayAlfa);
 }
 .item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--color4);
+  color: var(--litleBlack);
 }
 .itemDetail {
   margin: 1rem 0;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 300;
 }

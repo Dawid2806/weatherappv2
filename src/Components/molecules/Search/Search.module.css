@@ -8,11 +8,11 @@
   font-size: 20px;
   padding: 0.5rem 1rem;
   border-radius: 10px;
-  background-color: var(--btnColor);
-  color: var(--color3);
+  background-color: var(--grayAlfa);
+  color: var(--white);
   border: none;
   margin-bottom: 2rem;
 }
 input::placeholder {
-  color: var(--color3);
+  color: var(--white);
 }

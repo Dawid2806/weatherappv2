@@ -6,16 +6,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@1,200;1,700&family=Tai+Heritage+Pro&display=swap");
 
 :root {
-  --body: rgb(54, 200, 211);
-  --color2: rgb(85, 79, 79);
+  --litleBlue: rgb(54, 200, 211);
+  --gray: rgb(85, 79, 79);
 
-  --color3: white;
-  --color4: rgb(17, 5, 5);
-  --btnColor: rgba(143, 140, 140, 30%);
+  --white: white;
+  --litleBlack: rgb(17, 5, 5);
+  --grayAlfa: rgba(143, 140, 140, 30%);
+  --Red: rgb(207, 10, 10);
+  --Turcus: #c2fbd7;
 }
 
 body {
-  background-color: var(--body);
+  background-color: var(--litleBlue);
 
   font-family: "Tai Heritage Pro", serif;
 }
